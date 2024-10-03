@@ -1,11 +1,11 @@
 from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
-from routes.usuarios import usuario_route
+from routes.usu import usuario_route
 
 app = Flask(__name__)
-app.register_blueprint(usuario_route)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
+app.register_blueprint(usuario_route)
 
 @app.route("/")
 def iniciar():
