@@ -1,12 +1,15 @@
-from flask import Flask,render_template
+from flask import Flask, render_template
+from routes.usu import app_route
 from flask_sqlalchemy import SQLAlchemy
-from routes.usu import usuario_route
+from database.db import db
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-db = SQLAlchemy(app)
-app.register_blueprint(usuario_route)
+app.register_blueprint(app_route)
 
+db.init_app(app)
+  
 @app.route("/")
 def iniciar():
     return render_template('index.html')

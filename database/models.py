@@ -1,7 +1,7 @@
-from app import db
+from database.db import db
 
 class usuarios(db.Model):
 
-    id = db.column(db.Integer, primary_key = True)
-    email = db.column(db.String(50), nullnable = False)
-    senha = db.column(db.Sting(10), nullnable = False)
+    id = db.Column(db.Integer, primary_key = True)
+    email = db.Column(db.String(50))
+    senha = db.Column(db.String(10))

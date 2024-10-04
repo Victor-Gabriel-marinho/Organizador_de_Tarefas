@@ -1,13 +1,15 @@
 from flask import Blueprint, render_template, redirect, url_for,request
 from database.models import usuarios
-from app import db
+from database.db import db
 
-usuario_route = Blueprint('usuarios', __name__)
+app_route = Blueprint('usuario', __name__)
 
-@usuario_route.route('/cadastrar', methods = ['GET', 'POST'])
+@app_route.route('/cadastrar', methods = ['GET', 'POST'])
 def cadastrar():
     if request.method == 'GET':
+
         return render_template('cadastro.html')
+    
     elif request.method == "POST":
         email = request.form['email']
         senha = request.form['senha']
@@ -16,5 +18,4 @@ def cadastrar():
         db.session.add(novo_usu)
         db.session.commit()
 
-        return redirect(url_for('inicio'))
-    pass
+        return redirect(url_for('iniciar'))
