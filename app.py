@@ -1,7 +1,8 @@
-from flask import Flask, render_template
-from routes.usu import app_route
+from flask import Flask, render_template, request
+from routes.usu import app_route, email, nome
 from flask_sqlalchemy import SQLAlchemy
 from database.db import db
+from database.models import usuarios
 from flask_login import LoginManager, login_required
 
 
@@ -14,16 +15,15 @@ app.secret_key= "qwe123"
 
 @lm.user_loader
 def save_user(id):
-    usuario = db.session.query(usuario).filterby(id==id).first()
+    usuario = db.session.query(usuarios).filter_by(id=id).first()
     return usuario
 
 #inicializando o banco de dados
 db.init_app(app)
   
 @app.route("/")
-@login_required
 def iniciar():
-    return render_template('index.html')
+    return render_template('index.html', nome=nome, email=email)
 
 #criando o banco de dados
 with app.app_context():

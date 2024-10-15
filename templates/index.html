@@ -1,11 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../static/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>inicio</title>
 </head>
+
 <body>
-      <h1>Hello Wolrd!</h1>
+  <nav id="sidebar">
+    <div id="sidebar_contet">
+      <div id="user">
+        <img src="../static/imagens/accessibility-svgrepo-com.svg" alt="usuario" id="user_avatar">
+
+        <p id="user_infos">
+          <span class="item_descripton">
+            {% if not nome: %}
+              user
+            {% else: %}
+              {{ nome }}
+            {% endif %}
+          </span>
+          <span class="item_descripton">
+            {% if not email: %}
+              user
+            {% else: %}
+              {{ email }}
+            {% endif %}
+          </span>
+        </p>
+      </div>
+
+    <ul id="side_items">
+      <li class="side-item active">
+        <a href="#">
+          <i class="fa-solid fa-clipboard"></i>
+          <span class="item_descripton">
+            tarefas
+          </span>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="#">
+          <i class="fa-solid fa-user"></i>
+          <span class="item_descripton">
+            conta
+          </span>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="#">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span class="item_descripton">
+            tarefas completas
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <button id="open_btn">
+      <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    </div>
+    <div id="logout">
+      <button id="logout_btn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span class="item_descripton">
+          Logout
+        </span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Gestão de tarefas</h1>
+  </main>
+  <script src="..//static/js/script.js"></script>
 </body>
+
 </html>

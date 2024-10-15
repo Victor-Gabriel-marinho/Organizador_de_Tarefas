@@ -7,20 +7,23 @@ app_route = Blueprint('usuario', __name__)
 
 @app_route.route('/cadastrar', methods = ['GET', 'POST'])
 def cadastrar():
+    global nome 
+    global email 
+    
     if request.method == 'GET':
 
         return render_template('cadastro.html')
     
     elif request.method == "POST":
+        nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
 
-        novo_usu = usuarios(email = email, senha = senha)
+        novo_usu = usuarios(nome = nome, email = email, senha = senha)
         db.session.add(novo_usu)
         db.session.commit()
 
         login_user(novo_usu)
-
         return redirect(url_for('iniciar'))
     
 @app_route.route('/login', methods = ['GET', 'POST'])
@@ -30,10 +33,11 @@ def login():
         return render_template('login.html')
     
     elif request.method == "POST":
+        nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
 
-        user = db.session.query(usuarios).filter_by(email=email, senha=senha).first()
+        user = db.session.query(usuarios).filter_by(nome=nome, email=email, senha=senha).first()
         if not user:
             return "este usuário não existe"
         

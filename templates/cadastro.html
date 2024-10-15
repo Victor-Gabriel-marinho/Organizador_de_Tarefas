@@ -13,11 +13,13 @@
       <form action="" method="post" class="form_cadastro">
 
       <div>
-        <input type="email" name="email" id="" placeholder="email">
-        <input type="password" name="senha" id="" placeholder="senha">
+        <input type="text" name="nome" placeholder="nome">  
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="senha" placeholder="senha">
       </div>
 
       <div class="button"><input type="submit" value="cadastrar"></div>
+
       <div class="b_login"><a href="{{url_for('usuario.login')}}">Já possui um login?</a></div>
     </form>
   </div>
