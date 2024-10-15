@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
-from routes.usu import app_route, email, nome
+from flask import Flask, render_template, request, redirect
+from routes.usu import app_route
 from flask_sqlalchemy import SQLAlchemy
 from database.db import db
 from database.models import usuarios
@@ -23,7 +23,7 @@ db.init_app(app)
   
 @app.route("/")
 def iniciar():
-    return render_template('index.html', nome=nome, email=email)
+    return render_template('index.html')
 
 #criando o banco de dados
 with app.app_context():

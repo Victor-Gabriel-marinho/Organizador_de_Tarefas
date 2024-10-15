@@ -7,9 +7,6 @@ app_route = Blueprint('usuario', __name__)
 
 @app_route.route('/cadastrar', methods = ['GET', 'POST'])
 def cadastrar():
-    global nome 
-    global email 
-    
     if request.method == 'GET':
 
         return render_template('cadastro.html')
@@ -24,7 +21,7 @@ def cadastrar():
         db.session.commit()
 
         login_user(novo_usu)
-        return redirect(url_for('iniciar'))
+        return render_template('index.html', nome=nome, email=email)
     
 @app_route.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -42,9 +39,9 @@ def login():
             return "este usuário não existe"
         
         login_user(user)
-        return redirect(url_for('iniciar'))
+        return render_template('index.html', nome=nome, email=email)
     
 @app_route.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('usuario.login'))
