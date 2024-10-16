@@ -1,0 +1,21 @@
+main{
+    padding: 20px;
+    width: 100%;
+}
+.tabela{
+    width: 80%;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+.titulo{
+    background-color: #4f46e5;
+    color: #fff;
+    font-size: 20px;
+}
+
+.celulas{
+    background-color: #f6f6f6;
+    text-align: center;
+    white-space: nowrap;
+}

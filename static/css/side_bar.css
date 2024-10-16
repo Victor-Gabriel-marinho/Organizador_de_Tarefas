@@ -13,10 +13,6 @@ body{
     background-color: #e3e9f7;
 }
 
-main{
-    padding: 20px;
-}
-
 #sidebar{
     display: flex;
     flex-direction: column;
@@ -39,6 +35,7 @@ main{
     gap: 8px;
     margin-bottom: 24px ;
     border-radius: 20px;
+    margin: 15px;
 }
 
 #user_avatar{
