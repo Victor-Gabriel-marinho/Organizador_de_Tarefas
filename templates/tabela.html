@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/main.css">
+  <title>tarefas</title>
+</head>
+
+<body>
+  <section>
+    <table class="tabela">
+      <thead>
+        <tr class="titulo">
+          <th class="b1 backtab">Nome</th>
+          <th class="backtab">Descrição</th>
+          <th class="backtab">Status</th>
+          <th class="b3 backtab"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tarefa in tarefas %}
+        <tr class="linha">
+          <td class="c1 bc">{{ tarefa.nome }}</td>
+          <td class="bc">{{ tarefa.descrição }}</td>
+          <td class="c3 bc">{{ tarefa.status }}</td>
+          <td>
+            <div class="butons">
+              <button class="editar_btn">Editar</button>
+              <button class="delete_btn">Deletar </button>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</body>
+
+</html>

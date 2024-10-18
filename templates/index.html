@@ -7,8 +7,10 @@
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../static/css/side_bar.css">
-  <link rel="stylesheet" href="../static/css/tabela.css">
-  <script src="..//static/js/script.js" defer></script>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="../static/css/modal.css">
+  <script src="..//static/js/side_bar.js" defer></script>
+  <script src="..//static/js/modal.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>inicio</title>
 </head>
@@ -84,25 +86,46 @@
   </nav>
 
   <main>
-    <h1>Gestão de tarefas</h1>
-    <section>
-      <table class="tabela">
-        <thead>
-            <tr class="titulo">
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="celulas">
-              <td>Atividade</td>
-              <td>Fazer atividades pendentes</td>
-              <td>Pendete</td>
-            </tr>
-        </tbody>
-      </table>
-    </section>
+    <div class="header">
+      <h1>Gestão de tarefas</h1>
+      <button class="open_modal" data-modal="modal-1">
+        Criar Tarefa
+      </button>
+      <dialog id="modal-1">
+          <form action="/criar" method="post">
+              <div class="modal_header">
+                <h1 class="modal_title">
+                  crie uma Tarefa
+                </h1>
+                <button class="close_modal"
+                        data-modal="modal-1"
+                        type="button">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal_body">
+                <div class="input_group">
+                  <input type="text" id="nome" name="nome" placeholder="nome da tarefa">
+                </div>
+                <div class="input_group">
+                  <input type="text" id="desc" name="desc" placeholder="Descrição da tarefa">
+                </div>
+                <div class="input_group">
+                  <input type="date" id="data" name="data" placeholder="Data limite">
+                </div>
+                <div class="input_group">
+                  <input type="submit" value="Criar" id="button" >
+                </div>
+              </div>
+          </form>
+      </dialog>
+    </div>
+    <br>
+    {% if not tarefas: %}
+      <h3>nenhuma tarefa :/</h3>
+    {% else: %}
+      {% include 'tabela.html' %}
+    {% endif %}
   </main>
 </body>
 </html>

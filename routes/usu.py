@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for,request, session
-from database.models import Usuarios
+from database.models import Usuarios, tarefas
 from database.db import db
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
+from datetime import datetime
 
 app_route = Blueprint('usuario', __name__)
 
@@ -21,7 +22,11 @@ def cadastrar():
         db.session.commit()
 
         login_user(novo_usu)
-        return redirect('/')
+
+        session['nome'] = nome
+        session['email'] = email
+
+        return redirect(url_for('iniciar'))
     
 @app_route.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -46,6 +51,28 @@ def login():
         return redirect(url_for('iniciar'))
 
 @app_route.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('usuario.login'))
+
+@login_required
+def carrgar_tarefas():
+
+    tarefas_usu = tarefas.query.filter_by(usu_id=current_user.id).all()
+
+    return tarefas_usu
+
+@login_required
+def criar_tarefa():  
+    if request.method == 'POST':
+        nome = request.form['nome']
+        desc = request.form['desc']
+        data = request.form['data']
+
+        da = datetime.now().strftime('%d-%m-%Y')
+        if data != da:
+            status = False
+        elif data == da:
+            status = True
+        nova_tarefa = tarefas(nome =nome, descrição = desc, data=)
