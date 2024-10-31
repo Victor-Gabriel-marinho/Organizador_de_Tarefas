@@ -16,7 +16,6 @@ class tarefas(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nome = db.Column(db.String(50), nullable = False)
     descrição = db.Column(db.String(255), nullable=False)
+    data = db.Column(db.String(10), nullable=False)
     status = db.Column(db.Boolean, default=False)
     usu_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable = False)
-
-

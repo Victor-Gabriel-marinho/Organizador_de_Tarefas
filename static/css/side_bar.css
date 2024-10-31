@@ -102,6 +102,10 @@ body{
     border: none;
 }
 
+#logout a {
+    text-decoration: none;
+}
+
 #logout_btn{
     border: none;
     padding: 12px;
@@ -113,6 +117,10 @@ body{
     text-align: start;
     cursor: pointer;
     background-color: transparent;
+}   
+
+.cadastro_btn a {
+    color: #0a0a0a;
 }
 
 #open_btn{

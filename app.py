@@ -1,9 +1,9 @@
-from flask import Flask, render_template, redirect,session
+from flask import Flask, render_template,session
 from routes.usu import app_route, carrgar_tarefas
 from flask_sqlalchemy import SQLAlchemy
 from database.db import db
 from database.models import Usuarios, tarefas
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager, current_user, login_required
 
 
 app = Flask(__name__)
@@ -23,15 +23,15 @@ def save_user(id):
 db.init_app(app)
   
 @app.route("/")
+@login_required
 def iniciar():
 
-    nome = session.get('nome')
-    email = session.get('email')
+        nome = session.get('nome')
+        email = session.get('email')
+        tarefas = carrgar_tarefas()
+
+        return render_template('index.html', nome=nome, email=email, tarefas=tarefas)
     
-    tarefas = carrgar_tarefas()  
-
-    return render_template('index.html', nome=nome, email=email, tarefas=tarefas)
-
 #criando o banco de dados
 with app.app_context():
     db.create_all()

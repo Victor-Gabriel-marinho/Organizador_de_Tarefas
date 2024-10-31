@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, redirect, url_for,request, session
 from database.models import Usuarios, tarefas
 from database.db import db
 from flask_login import login_user, logout_user, login_required, current_user
-from datetime import datetime
 
 app_route = Blueprint('usuario', __name__)
 
@@ -53,7 +52,9 @@ def login():
 @app_route.route('/logout')
 @login_required
 def logout():
+
     logout_user()
+
     return redirect(url_for('usuario.login'))
 
 @login_required
@@ -63,16 +64,41 @@ def carrgar_tarefas():
 
     return tarefas_usu
 
+@app_route.route('/criar', methods = ['POST'])
 @login_required
 def criar_tarefa():  
-    if request.method == 'POST':
-        nome = request.form['nome']
-        desc = request.form['desc']
-        data = request.form['data']
+        nova_tarefa = tarefas(nome = request.form['nome'],
+                            descrição = request.form['desc'],
+                            data = request.form['data'],
+                            usu_id=current_user.id)
+        db.session.add(nova_tarefa)
+        db.session.commit()
 
-        da = datetime.now().strftime('%d-%m-%Y')
-        if data != da:
-            status = False
-        elif data == da:
-            status = True
-        nova_tarefa = tarefas(nome =nome, descrição = desc, data=)
+        return redirect(url_for('iniciar'))
+    
+@app_route.route('/deletar/<id_tarefa>')
+def deletar_tarefa(id_tarefa):
+    id_tarefa = list(id_tarefa)
+    id_tarefa = int(id_tarefa[9])
+
+    tarefa = db.session.query(tarefas).filter_by(id=id_tarefa).first()
+
+    db.session.delete(tarefa)
+    db.session.commit()
+
+    return redirect(url_for('iniciar'))
+
+@app_route.route('/editar/<tarefa>' , methods = ['POST'])
+def editar_tar(tarefa):
+        id_tarefa = list(tarefa)
+        id_tarefa = int(tarefa[9])
+
+        tarefa = db.session.query(tarefas).filter_by(id=id_tarefa).first()
+
+        tarefa.nome = request.form['nome']
+        tarefa.descrição = request.form['desc']
+        tarefa.data = request.form['data']
+
+        db.session.commit()       
+
+        return redirect(url_for('iniciar'))
