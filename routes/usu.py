@@ -58,11 +58,11 @@ def logout():
     return redirect(url_for('usuario.login'))
 
 @login_required
-def carrgar_tarefas():
+def carrgar_tar():
 
-    tarefas_usu = tarefas.query.filter_by(usu_id=current_user.id).all()
+    tarefas_pen = tarefas.query.filter_by(usu_id=current_user.id, status = False).all()
 
-    return tarefas_usu
+    return tarefas_pen
 
 @app_route.route('/criar', methods = ['POST'])
 @login_required
@@ -76,24 +76,20 @@ def criar_tarefa():
 
         return redirect(url_for('iniciar'))
     
-@app_route.route('/deletar/<id_tarefa>')
-def deletar_tarefa(id_tarefa):
-    id_tarefa = list(id_tarefa)
-    id_tarefa = int(id_tarefa[9])
+@app_route.route('/deletar/<int:id_tar>')
+def deletar_tarefa(id_tar):
 
-    tarefa = db.session.query(tarefas).filter_by(id=id_tarefa).first()
+    tarefa = db.session.query(tarefas).filter_by(id=id_tar).first()
 
     db.session.delete(tarefa)
     db.session.commit()
 
     return redirect(url_for('iniciar'))
 
-@app_route.route('/editar/<tarefa>' , methods = ['POST'])
-def editar_tar(tarefa):
-        id_tarefa = list(tarefa)
-        id_tarefa = int(tarefa[9])
+@app_route.route('/editar/<int:id_tar>' , methods = ['POST'])
+def editar_tar(id_tar):
 
-        tarefa = db.session.query(tarefas).filter_by(id=id_tarefa).first()
+        tarefa = db.session.query(tarefas).filter_by(id=id_tar).first()
 
         tarefa.nome = request.form['nome']
         tarefa.descrição = request.form['desc']
@@ -102,3 +98,21 @@ def editar_tar(tarefa):
         db.session.commit()       
 
         return redirect(url_for('iniciar'))
+
+@app_route.route('/comp_tar/<int:tarefa_id>')
+def completar_tar(tarefa_id):
+
+    tarefa = db.session.query(tarefas).filter_by(id = tarefa_id).first()
+    tarefa.status = True
+
+    db.session.commit()
+
+    return redirect(url_for('iniciar'))
+
+@login_required
+@app_route.route('/tar_completas')
+def tar_completas():
+
+    tar_comp = db.session.query(tarefas).filter_by(status = True, usu_id = current_user.id).all()
+
+    return render_template('index.html',tarefas=tar_comp)

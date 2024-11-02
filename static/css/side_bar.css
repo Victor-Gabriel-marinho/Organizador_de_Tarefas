@@ -117,10 +117,14 @@ body{
     text-align: start;
     cursor: pointer;
     background-color: transparent;
-}   
+}
 
-.cadastro_btn a {
-    color: #0a0a0a;
+.ativar_btn{
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
 }
 
 #open_btn{

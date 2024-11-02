@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="../static/css/side_bar.css">
   <link rel="stylesheet" href="../static/css/main.css">
   <link rel="stylesheet" href="../static/css/modal.css">
-  <script src="..//static/js/side_bar.js" defer></script>
-  <script src="..//static/js/modal.js" defer></script>
+  <script src="../static/js/side_bar.js" defer></script>
+  <script src="../static/js/modal.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GT - Gestão de tarefas</title>
 </head>
@@ -40,32 +40,43 @@
       </div>
 
     <ul id="side_items">
+      {% if tarefas[1].status == False %}
       <li class="side-item active">
-        <a href="#">
+          <a href="/" class="ativar_btn">
+            <i class="fa-solid fa-clipboard"></i>
+            <span class="item_descripton">
+              tarefas
+            </span>
+          </a>
+      </li>
+
+      <li class="side-item">
+          <a href="/tar_completas" class="ativar_btn" >
+            <i class="fa-solid fa-calendar-check"></i>
+            <span class="item_descripton">
+              tarefas completas
+            </span>
+          </a>
+      </li>
+      {% else %}
+      <li class="side-item">
+        <a href="/" class="ativar_btn">
           <i class="fa-solid fa-clipboard"></i>
           <span class="item_descripton">
             tarefas
           </span>
         </a>
-      </li>
+    </li>
 
-      <li class="side-item">
-        <a href="#">
-          <i class="fa-solid fa-user"></i>
-          <span class="item_descripton">
-            conta
-          </span>
-        </a>
-      </li>
-
-      <li class="side-item">
-        <a href="#">
+    <li class="side-item active">
+        <a href="/tar_completas" class="ativar_btn" >
           <i class="fa-solid fa-calendar-check"></i>
           <span class="item_descripton">
             tarefas completas
           </span>
         </a>
-      </li>
+    </li>
+    {% endif %}
     </ul>
 
     <button id="open_btn">
@@ -73,9 +84,7 @@
     </button>
 
     </div>
-    {% if not nome: %}
-     
-    {% else: %}
+    
       <div id="logout">
       <a href="/logout">
         <button id="logout_btn">
@@ -86,19 +95,20 @@
         </button>
       </a>
       </div>
-    {% endif %}
   </nav>
 
   <main>
     <div class="header">
       <h1>Gestão de tarefas</h1>
-
+       {% if tarefas[1].status == False %}
         <button class="open_modal" data-modal="modal-1">
         Criar Tarefa
         </button>
+      {% else %}
+      {% endif %}
 
         <dialog id="modal-1">
-          <form action="criar" method="post">
+          <form action="/criar" method="post">
               <div class="modal_header">
                 <h1 class="modal_title">
                   Crie uma Tarefa

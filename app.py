@@ -1,5 +1,5 @@
 from flask import Flask, render_template,session
-from routes.usu import app_route, carrgar_tarefas
+from routes.usu import app_route, carrgar_tar
 from flask_sqlalchemy import SQLAlchemy
 from database.db import db
 from database.models import Usuarios, tarefas
@@ -26,13 +26,15 @@ db.init_app(app)
 @login_required
 def iniciar():
 
-        nome = session.get('nome')
-        email = session.get('email')
-        tarefas = carrgar_tarefas()
+    nome = session.get('nome')
+    email = session.get('email')
+    tarefas = carrgar_tar()
 
-        return render_template('index.html', nome=nome, email=email, tarefas=tarefas)
+    return render_template('index.html', nome=nome, email=email, tarefas=tarefas)
     
 #criando o banco de dados
 with app.app_context():
     db.create_all()
-app.run(debug= True)    
+
+if __name__ == "__main__":
+    app.run(debug= True)    
