@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="../static/css/side_bar.css">
+  <script src="../static/js/side_bar.js" defer></script>
+  <title>GT - Trarefas completas</title>
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div id="sidebar_contet">
+          <div id="user">
+            <img src="../static/imagens/accessibility-svgrepo-com.svg" alt="usuario" id="user_avatar">
+    
+            <p id="user_infos">
+              <span class="item_descripton">
+                {% if not nome: %}
+                visitante
+                {% else: %}
+                {{ nome }}
+                {% endif %}
+              </span>
+              <span class="item_descripton">
+                {% if not email: %}
+                não cadastrado
+                {% else: %}
+                {{ email }}
+                {% endif %}
+              </span>
+            </p>
+          </div>
+    
+          <ul id="side_items">
+            <li class="side-item">
+              <a href="/" class="ativar_btn">
+                <i class="fa-solid fa-clipboard"></i>
+                <span class="item_descripton">
+                  tarefas
+                </span>
+              </a>
+            </li>
+    
+            <li class="side-item active">
+              <a href="/tar_completas" class="ativar_btn">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="item_descripton">
+                  tarefas completas
+                </span>
+              </a>
+            </li>
+          </ul>
+    
+          <button id="open_btn">
+            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+          </button>
+    
+        </div>
+    
+        <div id="logout">
+          <a href="/logout">
+            <button id="logout_btn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span class="item_descripton">
+                Logout
+              </span>
+            </button>
+          </a>
+        </div>
+      </nav>
+
+  <main>
+    <div class="header">
+      <h1>Gestão de tarefas</h1>
+    </div>
+
+    <br>
+    
+      {% if not tarefas %}
+        <h3>sem tarefas completas :/</h3>
+      {% else %}
+        {% include 'tabela_completa.html' %}
+      {% endif %}
+  </main>
+</body>
+
+</html>

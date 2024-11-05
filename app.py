@@ -1,4 +1,4 @@
-from flask import Flask, render_template,session
+from flask import Flask, render_template, session
 from routes.usu import app_route, carrgar_tar
 from flask_sqlalchemy import SQLAlchemy
 from database.db import db

@@ -17,12 +17,8 @@
           <th class="b1 backtab">Nome</th>
           <th class="backtab">Descrição</th>
           <th class="backtab">Data</th>
-          {% if tarefas[1].status == False %}
-            <th class="backtab">Status</th>
-            <th class="b4 backtab"></th>
-          {% else %}
-          <th class="b4 backtab">Status</th>
-          {% endif %}
+          <th class="backtab">Status</th>
+          <th class="b4 backtab"></th>
         </tr>
       </thead>
       <tbody>
@@ -32,59 +28,54 @@
           <td class="bc">{{ tarefa.descrição }}</td>
           <td class="bc date" data-variavel="{{ tarefa.data }}"></td>
           <td class="bc">
-            {% if tarefa.status == False %}
-              <a href="/comp_tar/{{ tarefa.id }}">
-                <button class="status_btn">
-                  <i class="fa-solid fa-exclamation exclamacao"></i>
+            <a href="/comp_tar/{{ tarefa.id }}">
+              <button class="status_btn">
+                <i class="fa-solid fa-exclamation exclamacao"></i>
+              </button>
+            </a>
+          <td class="c5 bc">
+            <div class="butons">
+              <button class="editar_btn open_modal" data-modal="modal-2">
+                Editar
+              </button>
+
+              <dialog id="modal-2">
+                <form action="editar/{{ tarefa.id }}" method="post">
+                  <div class="modal_header">
+                    <h1 class="modal_title">
+                      Edite a Tarefa
+                    </h1>
+                    <button class="close_modal" data-modal="modal-2" type="button">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+
+                  <div class="modal_body">
+                    <div class="input_group">
+                      <label>Nome</label>
+                      <input type="text" id="nome" name="nome" placeholder="nome da tarefa" autocomplete="off" required>
+                    </div>
+                    <div class="input_group">
+                      <label>Descrição</label>
+                      <input type="text" id="desc" name="desc" placeholder="Descrição da tarefa" autocomplete="off"
+                        required>
+                    </div>
+                    <div class="input_group">
+                      <label>Data</label>
+                      <input type="date" id="data" name="data" placeholder="Data limite" autocomplete="off" required>
+                    </div>
+                    <div class="input_group">
+                      <input type="submit" value="Editar" id="button">
+                    </div>
+                  </div>
+                </form>
+              </dialog>
+              <a href="/deletar/{{ tarefa.id }}">
+                <button class="delete_btn">
+                  Deletar
                 </button>
               </a>
-              <td class="c5 bc">
-                <div class="butons">
-                  <button class="editar_btn open_modal" data-modal="modal-2">
-                    Editar
-                  </button>
-    
-                  <dialog id="modal-2">
-                    <form action="editar/{{ tarefa.id }}" method="post">
-                      <div class="modal_header">
-                        <h1 class="modal_title">
-                          Edite a Tarefa
-                        </h1>
-                        <button class="close_modal" data-modal="modal-2" type="button">
-                          <i class="fa-solid fa-xmark"></i>
-                        </button>
-                      </div>
-    
-                      <div class="modal_body">
-                        <div class="input_group">
-                          <label>Nome</label>
-                          <input type="text" id="nome" name="nome" placeholder="nome da tarefa" autocomplete="off" required>
-                        </div>
-                        <div class="input_group">
-                          <label>Descrição</label>
-                          <input type="text" id="desc" name="desc" placeholder="Descrição da tarefa" autocomplete="off" required>
-                        </div>
-                        <div class="input_group">
-                          <label>Data</label>
-                          <input type="date" id="data" name="data" placeholder="Data limite" autocomplete="off" required>
-                        </div>
-                        <div class="input_group">
-                          <input type="submit" value="Editar" id="button">
-                        </div>
-                      </div>
-                    </form>
-                  </dialog>
-                  <a href="/deletar/{{ tarefa.id }}">
-                    <button class="delete_btn">
-                      Deletar
-                    </button>
-                  </a>
-                </div>
-              </td>
-            {% else %}
-              <i class="fa-solid fa-check"></i>
-            {% endif %}
-          </td>
+            </div>
         </tr>
         {% endfor %}
       </tbody>

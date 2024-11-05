@@ -101,7 +101,7 @@ def editar_tar(id_tar):
 
 @app_route.route('/comp_tar/<int:tarefa_id>')
 def completar_tar(tarefa_id):
-
+    print(tarefa_id)
     tarefa = db.session.query(tarefas).filter_by(id = tarefa_id).first()
     tarefa.status = True
 
@@ -115,4 +115,4 @@ def tar_completas():
 
     tar_comp = db.session.query(tarefas).filter_by(status = True, usu_id = current_user.id).all()
 
-    return render_template('index.html',tarefas=tar_comp)
+    return render_template('tar_comp.html',tarefas=tar_comp)

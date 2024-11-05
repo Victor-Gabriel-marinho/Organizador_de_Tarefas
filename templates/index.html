@@ -24,68 +24,48 @@
         <p id="user_infos">
           <span class="item_descripton">
             {% if not nome: %}
-              visitante
+            visitante
             {% else: %}
-              {{ nome }}
+            {{ nome }}
             {% endif %}
           </span>
           <span class="item_descripton">
             {% if not email: %}
-              não cadastrado
+            não cadastrado
             {% else: %}
-              {{ email }}
+            {{ email }}
             {% endif %}
           </span>
         </p>
       </div>
 
-    <ul id="side_items">
-      {% if tarefas[1].status == False %}
-      <li class="side-item active">
+      <ul id="side_items">
+        <li class="side-item active">
           <a href="/" class="ativar_btn">
             <i class="fa-solid fa-clipboard"></i>
             <span class="item_descripton">
               tarefas
             </span>
           </a>
-      </li>
+        </li>
 
-      <li class="side-item">
-          <a href="/tar_completas" class="ativar_btn" >
+        <li class="side-item">
+          <a href="/tar_completas" class="ativar_btn">
             <i class="fa-solid fa-calendar-check"></i>
             <span class="item_descripton">
               tarefas completas
             </span>
           </a>
-      </li>
-      {% else %}
-      <li class="side-item">
-        <a href="/" class="ativar_btn">
-          <i class="fa-solid fa-clipboard"></i>
-          <span class="item_descripton">
-            tarefas
-          </span>
-        </a>
-    </li>
+        </li>
+      </ul>
 
-    <li class="side-item active">
-        <a href="/tar_completas" class="ativar_btn" >
-          <i class="fa-solid fa-calendar-check"></i>
-          <span class="item_descripton">
-            tarefas completas
-          </span>
-        </a>
-    </li>
-    {% endif %}
-    </ul>
-
-    <button id="open_btn">
-      <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-    </button>
+      <button id="open_btn">
+        <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+      </button>
 
     </div>
-    
-      <div id="logout">
+
+    <div id="logout">
       <a href="/logout">
         <button id="logout_btn">
           <i class="fa-solid fa-right-from-bracket"></i>
@@ -94,58 +74,54 @@
           </span>
         </button>
       </a>
-      </div>
+    </div>
   </nav>
 
   <main>
     <div class="header">
       <h1>Gestão de tarefas</h1>
-       {% if tarefas[1].status == False %}
-        <button class="open_modal" data-modal="modal-1">
+      <button class="open_modal" data-modal="modal-1">
         Criar Tarefa
-        </button>
-      {% else %}
-      {% endif %}
+      </button>
 
-        <dialog id="modal-1">
-          <form action="/criar" method="post">
-              <div class="modal_header">
-                <h1 class="modal_title">
-                  Crie uma Tarefa
-                </h1>
-                <button class="close_modal"
-                        data-modal="modal-1"
-                        type="button">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-              <div class="modal_body">
-                <div class="input_group">
-                  <label>Nome</label>
-                  <input type="text" id="nome" name="nome" placeholder="nome da tarefa" autocomplete="off" required>
-                </div>
-                <div class="input_group">
-                  <label>Descrição</label>
-                  <input type="text" id="desc" name="desc" placeholder="Descrição da tarefa" autocomplete="off" required>
-                </div>
-                <div class="input_group">
-                  <label>Data</label>
-                  <input type="date" id="data" name="data" placeholder="Data limite" autocomplete="off" required>
-                </div>
-                <div class="input_group">
-                  <input type="submit" value="Criar" id="button" >
-                </div>
-              </div>
-          </form>
-        </dialog>
-  
+      <dialog id="modal-1">
+        <form action="/criar" method="post">
+          <div class="modal_header">
+            <h1 class="modal_title">
+              Crie uma Tarefa
+            </h1>
+            <button class="close_modal" data-modal="modal-1" type="button">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="modal_body">
+            <div class="input_group">
+              <label>Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="nome da tarefa" autocomplete="off" required>
+            </div>
+            <div class="input_group">
+              <label>Descrição</label>
+              <input type="text" id="desc" name="desc" placeholder="Descrição da tarefa" autocomplete="off" required>
+            </div>
+            <div class="input_group">
+              <label>Data</label>
+              <input type="date" id="data" name="data" placeholder="Data limite" autocomplete="off" required>
+            </div>
+            <div class="input_group">
+              <input type="submit" value="Criar" id="button">
+            </div>
+          </div>
+        </form>
+      </dialog>
+
     </div>
     <br>
     {% if not tarefas: %}
-      <h3>nenhuma tarefa :/</h3>
+    <h3>nenhuma tarefa :/</h3>
     {% else: %}
-      {% include 'tabela.html' %}
+    {% include 'tabela.html' %}
     {% endif %}
   </main>
 </body>
+
 </html>
