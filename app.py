@@ -2,6 +2,7 @@ from flask import Flask, render_template, session
 from routes.usu import app_route, carrgar_tar
 from flask_sqlalchemy import SQLAlchemy
 from database.db import db
+import os
 from database.models import Usuarios, tarefas
 from flask_login import LoginManager, current_user, login_required
 
@@ -37,4 +38,5 @@ with app.app_context():
     db.create_all()
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',debug= True)    
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0',debug= True, port=port)    
