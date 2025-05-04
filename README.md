@@ -4,8 +4,8 @@ Um projeto desenvolvido com o intuito de apreder e testar meus conhecimentos em 
 
 ### Tecnologias utilizadas 🖥️
 
-- **HTML
-- **CSS
-- **Flask
-- **flask_login
-- **SQLite
+- HTML
+- CSS
+- Flask
+- flask_login
+- SQLite
