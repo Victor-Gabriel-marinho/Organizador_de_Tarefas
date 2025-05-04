@@ -16,10 +16,10 @@ Um projeto desenvolvido com o intuito de apreder e testar meus conhecimentos em 
 ![Login](https://github.com/user-attachments/assets/4bfee17e-8bdc-4d3f-b944-3410a90493a9)
 
 ### Home
-![Home](https://github.com/user-attachments/assets/bec3b731-10c5-4e6b-a1f4-ac5f4643dd98)
+![Home](https://github.com/user-attachments/assets/67c38ee8-19e3-497d-ba33-ac2564ae75f8)
 
 ### Modal de criação
-![Modal](https://github.com/user-attachments/assets/dcf85add-ef77-4de3-9976-62826bb78df9)
+![Modal](https://github.com/user-attachments/assets/fa024835-6f68-463e-b707-ac3461f8dd8c)
 
 ### Tarefas completas + menu aberto
 ![Completas](https://github.com/user-attachments/assets/ad1a0a95-8623-40b3-b6aa-c99473df68ef)
