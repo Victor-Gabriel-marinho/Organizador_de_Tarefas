@@ -9,20 +9,24 @@
 
 body{
     display: flex;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
     background-color: #e3e9f7;
 }
 
+
 #sidebar{
     display: flex;
+    z-index: 2;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     background-color:#fff;
     height: 100vh;
     border-radius: 0px 18px 18px 0px;
-    position: relative;
     transition: all .5s;
-    min-width: 82px;
+    position: relative;
+    min-width: 70px;
 }
 
 #sidebar_content{
@@ -33,14 +37,13 @@ body{
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 24px ;
     border-radius: 20px;
-    margin: 15px;
+    margin: 10px;
 }
 
 #user_avatar{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
 }
 
